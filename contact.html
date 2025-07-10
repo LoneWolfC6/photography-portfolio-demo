@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Solstice Lens</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Solstice Lens</h1>
+    <nav class="site-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="contact-section">
+    <h2>Contact</h2>
+    <p>If you'd like to collaborate or inquire about prints, feel free to reach out below.</p>
+
+    <form id="contact-form">
+        <input type="email" name="email" placeholder="Your email" required>
+        <textarea name="message" placeholder="Your message" rows="5" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+    </form>
+
+    <div class="confirmation-message" style="display: none;">
+        <p>Thank you for your message! This is a demo site, but your submission was successful.</p>
+    </div>
+  </section>
+
+  <script>
+  const contactForm = document.querySelector('#contact-form');
+  const confirmationMessage = document.querySelector('.confirmation-message');
+
+  contactForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    contactForm.style.display = 'none';
+    confirmationMessage.style.display = 'block';
+  });
+</script>
+
+</body>
+</html>

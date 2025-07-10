@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Solstice Lens</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Solstice Lens</h1>
+    <nav class="site-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="gallery-section">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <img src="images/gallery1.jpg" alt="Gallery Image 1">
+      <img src="images/gallery2.jpg" alt="Gallery Image 2">
+      <img src="images/gallery3.jpg" alt="Gallery Image 3">
+      <img src="images/gallery4.jpg" alt="Gallery Image 4">
+      <img src="images/gallery5.jpg" alt="Gallery Image 5">
+      <img src="images/gallery6.jpg" alt="Gallery Image 6">
+      <img src="images/gallery7.jpg" alt="Gallery Image 7">
+      <img src="images/gallery8.jpg" alt="Gallery Image 8">
+      <img src="images/gallery9.jpg" alt="Gallery Image 9">
+      <img src="images/gallery10.jpg" alt="Gallery Image 10">
+      <img src="images/gallery11.jpg" alt="Gallery Image 11">
+      <img src="images/gallery12.jpg" alt="Gallery Image 12">
+      <img src="images/gallery13.jpg" alt="Gallery Image 13">
+      <img src="images/gallery14.jpg" alt="Gallery Image 14">
+      <img src="images/gallery15.jpg" alt="Gallery Image 15">
+      <img src="images/gallery16.jpg" alt="Gallery Image 16">
+      <img src="images/gallery17.jpg" alt="Gallery Image 17">
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn">&times;</span>
+    <img src="" alt="Expanded Image" class="lightbox-image">
+    <button class="prev-btn" aria-label="Previous Image">&#10094;</button>
+    <button class="next-btn" aria-label="Next Image">&#10095;</button>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.querySelector('.lightbox-image');
+    const closeBtn = document.querySelector('.close-btn');
+    const galleryImages = document.querySelectorAll('.gallery-grid img');
+
+    const images = Array.from(galleryImages);
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      lightboxImage.src = images[currentIndex].src;
+      lightboxImage.alt = images[currentIndex].alt;
+      lightbox.classList.add('active');
+    }
+
+    galleryImages.forEach((img, index) => {
+      img.addEventListener('click', () => openLightbox(index));
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+      }
+    });
+
+    document.querySelector('.prev-btn').addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      lightboxImage.src = images[currentIndex].src;
+      lightboxImage.alt = images[currentIndex].alt;
+    });
+
+    document.querySelector('.next-btn').addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      lightboxImage.src = images[currentIndex].src;
+      lightboxImage.alt = images[currentIndex].alt;
+    });
+
+    // Basic Swipe Support
+    let startX = 0;
+
+    lightbox.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+
+    lightbox.addEventListener('touchend', (e) => {
+      let endX = e.changedTouches[0].clientX;
+      let diff = startX - endX;
+
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          currentIndex = (currentIndex + 1) % images.length;
+        } else {
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+        }
+        lightboxImage.src = images[currentIndex].src;
+        lightboxImage.alt = images[currentIndex].alt;
+      }
+    });
+  </script>
+</body>
+</html>
