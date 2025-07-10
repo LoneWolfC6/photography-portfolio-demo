@@ -55,4 +55,4 @@ It also serves as a flexible website template for creative professionals, photog
 
 ## Contact:
 Built by Brandon Jamison / Jamison Collective  
-For inquiries or collaborations, feel free to reach out at: brandonjamison.dev@gmail.com
+For project inquiries or collaborations, feel free to [email me](brandonjamison.dev@gmail.com).
