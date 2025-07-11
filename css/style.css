@@ -101,9 +101,6 @@ ul {
   display: inline-block;
 }
 
-.hero-section {
-  background-color: #fafafa; /* fallback background to prevent white flash */
-}
 
 /* Gallery Section */
 .gallery-section {

@@ -27,28 +27,44 @@
   </section>
 
   <script>
-  const heroSection = document.querySelector('.hero-section');
+    const heroSection = document.querySelector('.hero-section');
 
-  const backgrounds = [
-    'images/gallery1.jpg',
-    'images/gallery2.jpg',
-    'images/gallery4.jpg',
-    'images/gallery14.jpg',
-    'images/gallery15.jpg'
-  ];
+    const backgrounds = [
+      'images/gallery1.jpg',
+      'images/gallery2.jpg',
+      'images/gallery4.jpg',
+      'images/gallery14.jpg',
+      'images/gallery15.jpg'
+    ];
 
-  let current = 0;
+    let current = 0;
 
-  function changeBackground() {
-    heroSection.style.backgroundImage = `url('${backgrounds[current]}')`;
-    current = (current + 1) % backgrounds.length;
-  }
+    // Preload images
+    const preloadImages = (srcArray, callback) => {
+      let loaded = 0;
+      srcArray.forEach(src => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => {
+          loaded++;
+          if (loaded === srcArray.length) {
+            callback();
+          }
+        };
+      });
+    };
 
-  // Initial background
-  changeBackground();
-  // Change every 5 seconds (5000 ms)
-  setInterval(changeBackground, 5000);
-</script>
+    // Once all images are loaded, start the background rotation
+    preloadImages(backgrounds, () => {
+      function changeBackground() {
+        heroSection.style.backgroundImage = `url('${backgrounds[current]}')`;
+        current = (current + 1) % backgrounds.length;
+      }
+
+      changeBackground(); // Show the first image immediately
+      setInterval(changeBackground, 5000);
+    });
+  </script>
 
 </body>
 </html>
