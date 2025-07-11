@@ -93,6 +93,17 @@ ul {
   transition: opacity 2s ease-in-out;
 }
 
+.hero-section h2,
+.hero-section p {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.hero-section {
+  background-color: #fafafa; /* fallback background to prevent white flash */
+}
 
 /* Gallery Section */
 .gallery-section {
