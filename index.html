@@ -4,10 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solstice Lens | Photography Portfolio</title>
+  <!-- Link to external CSS stylesheet -->
   <link rel="stylesheet" href="css/style.css">
+  <!-- Google Fonts: Roboto -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
 </head>
 <body>
+
+  <!-- Site Header: Title & Navigation -->
   <header class="site-header">
     <h1>Solstice Lens</h1>
     <nav class="site-nav">
@@ -20,52 +24,14 @@
     </nav>
   </header>
 
+  <!-- Hero Section: Slideshow Background with Text Overlay -->
   <section class="hero-section">
     <div class="background-overlay"></div>
     <h2>Capturing Light, Life & Moments</h2>
     <p>Minimalist photography portfolio showcasing timeless imagery and thoughtful design.</p>
   </section>
 
-  <script>
-    const heroSection = document.querySelector('.hero-section');
-
-    const backgrounds = [
-      'images/gallery1.jpg',
-      'images/gallery2.jpg',
-      'images/gallery4.jpg',
-      'images/gallery14.jpg',
-      'images/gallery15.jpg'
-    ];
-
-    let current = 0;
-
-    // Preload images
-    const preloadImages = (srcArray, callback) => {
-      let loaded = 0;
-      srcArray.forEach(src => {
-        const img = new Image();
-        img.src = src;
-        img.onload = () => {
-          loaded++;
-          if (loaded === srcArray.length) {
-            callback();
-          }
-        };
-      });
-    };
-
-    // Once all images are loaded, start the background rotation
-    preloadImages(backgrounds, () => {
-      current = 0;
-      function changeBackground() {
-        heroSection.style.backgroundImage = `url('${backgrounds[current]}')`;
-        current = (current + 1) % backgrounds.length;
-      }
-
-      changeBackground(); // Show the first image immediately
-      setInterval(changeBackground, 5000);
-    });
-  </script>
+  <script src="js/main.js" defer></script>
 
 </body>
 </html>
